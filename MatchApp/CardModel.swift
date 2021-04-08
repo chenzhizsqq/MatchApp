@@ -32,7 +32,7 @@ class CardModel{
             
             print(randomNumber)
         }
-    
+        
         
         //randomize the cards within the array
         generatedCards.shuffle()
