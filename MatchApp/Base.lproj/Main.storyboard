@@ -58,7 +58,7 @@
                                         <size key="customSize" width="126" height="176"/>
                                         <connections>
                                             <outlet property="backImageView" destination="xyl-h1-tM6" id="GEJ-AB-Qev"/>
-                                            <outlet property="fontImageView" destination="efj-SZ-g1n" id="74i-nv-J4O"/>
+                                            <outlet property="frontImageView" destination="efj-SZ-g1n" id="74i-nv-J4O"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
