@@ -13,13 +13,13 @@ class ViewController: UIViewController, UICollectionViewDataSource , UICollectio
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var timerLabel: UILabel!
     
-    let model = CardModel()
+    var model = CardModel()
     var cardsArray = [Card]()
     
     var firstFlippedCardIndex:IndexPath?
     
     var timer:Timer?
-    var milliseconds:Int = 100 * 1000
+    var milliseconds:Int = 10 * 1000
     
     var soundPlayer = SoundManager()
     
@@ -223,14 +223,34 @@ class ViewController: UIViewController, UICollectionViewDataSource , UICollectio
         }
     }
     
+    
+    let callActionHandler = { (action:UIAlertAction!) -> Void in
+        
+    }
+    
     func showAlert(title:String, message:String){
         
         // Create the alert
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         // Add a button for the user to dismiss it
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: { (action:UIAlertAction!) -> Void in
+            
+            //重新再数过
+            
+            self.milliseconds = 10 * 1000
+            self.timerLabel.textColor = UIColor.black
+            self.timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(self.timerFired), userInfo: nil, repeats: true)
+            RunLoop.main.add(self.timer!, forMode: .common)
+            
+        })
         alert.addAction(okAction)
+        
+        
+        //两秒钟后自动消失
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+//            self.presentedViewController?.dismiss(animated: false, completion: nil)
+//        }
         
         // Show the alert
         present(alert, animated: true, completion: nil)
